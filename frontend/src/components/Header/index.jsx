@@ -9,11 +9,13 @@ import { logout, selectIsAuth } from '../../redux/slices/auth';
 export const Header = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
-
   const onClickLogout = () => {
     if (window.confirm('Вы действительно хотите выйти?')) {
       dispatch(logout);
       window.localStorage.removeItem('token');
+      if ('isAdmin' in window.localStorage) {
+        window.localStorage.removeItem('isAdmin');
+      };
     };
     document.location.reload();
   };
@@ -23,16 +25,8 @@ export const Header = () => {
         <div className={styles.inner}>
           <Link className={styles.logo} to="/home"><div>HOME</div></Link>
           <div className={styles.buttons}>
-            {isAuth ? (
-              <>
-                <Button onClick={onClickLogout} variant="contained" color="error">Выйти</Button>
-              </>) : 
-              (<>
-                <Link to="/login">
-                  <Button variant="outlined">Войти</Button>
-                </Link>
-              </>
-            )}
+            {isAuth ? (<><Button onClick={onClickLogout} variant="contained" color="error">Выйти</Button></>): 
+              (<><Link to="/login"><Button variant="outlined">Войти</Button></Link></>)}
           </div>
         </div>
       </Container>

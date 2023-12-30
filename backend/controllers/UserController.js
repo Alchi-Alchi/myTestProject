@@ -81,28 +81,3 @@ export const removeUser = async (req, res) => {
         });
     }
 };
-
-// Регистрация
-
-// app.post('/auth/login', validator, async (req, res) => {
-//     try {
-//         const password = req.body.password;
-//         const salt = await bcrypt.genSalt(10);
-//         const passwordHash = await bcrypt.hash(password, salt)
-//         const doc = new UserModel({
-//             login: req.body.login,
-//             passwordHash,
-//         });
-//         const user = await doc.save();
-//         const token = jwt.sign({
-//             _id: user._id,
-//         }, 'riddle', {expiresIn: '30d',});
-
-//         res.json({...user._doc, token,});
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({
-//             message: 'Failed',
-//         });
-//     }
-// });

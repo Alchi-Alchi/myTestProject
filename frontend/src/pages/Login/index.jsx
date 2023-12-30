@@ -27,6 +27,9 @@ export const Login = () => {
     if ('token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
     }
+    if ('isAdmin' in data.payload) {
+      window.localStorage.setItem('isAdmin', data.payload.isAdmin);
+    }
     adminID = data.payload._id;
   };
 

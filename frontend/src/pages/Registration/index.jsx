@@ -7,12 +7,10 @@ import Avatar from '@mui/material/Avatar';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchRegister, selectIsAuth } from "../../redux/slices/auth";
-import { Navigate } from "react-router-dom";
-
 import styles from './Login.module.scss';
 
 export const Registration = () => {
-  //const isAuth = useSelector(selectIsAuth);
+  const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const {register, handleSubmit, formState: {errors, isValid}} = useForm({
     defaultValues: {
@@ -31,11 +29,10 @@ export const Registration = () => {
     if ('token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
     }
+    window.location.replace("http://localhost:3000/home");
   };
-
-  // if (isAuth) {
-  //   return <Navigate to="/"/>;
-  // }
+ 
+  
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">

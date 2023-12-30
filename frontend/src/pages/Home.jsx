@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { Post } from '../components/Post';
+import { User } from '../components/User';
 import { fetchUsers } from '../redux/slices/users';
 import { selectIsAuth } from '../redux/slices/auth';
 export const Home = () => {
@@ -20,8 +20,8 @@ export const Home = () => {
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {isAuth ? (isUsersLoading ? [...Array(5)] : users.items).map((obj, index) =>
-           isUsersLoading ? (<Post key={index} isLoading={true}/>):
-          (<Post
+           isUsersLoading ? (<User key={index} isLoading={true}/>):
+          (<User
             id={obj._id}
             login={obj.login}
             userName={obj.userName}
